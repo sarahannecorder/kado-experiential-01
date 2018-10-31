@@ -49,21 +49,17 @@ $('document').ready(function(){
 var controller = new ScrollMagic.Controller();
 
 
-
+// build a sceme 
 var ourScene = new ScrollMagic.Scene({
 triggerElement: '.view-point',
 triggerHook: 0.9,
 reverse: true
+
+
+
 })
-
-
 .setClassToggle('.view-point', 'opacity-in') // add class to project*/
-.addIndicators({
-		name: 'fade scene',
-		colorTrigger: 'black',
-		colorStart: '#75C695',
-		colorEnd: 'pink'
-}) // this requires a plugin
+
 .addTo(controller);
 
 
@@ -71,7 +67,7 @@ reverse: true
 // Scroll Magic Tutorial by www.ihatetomatoes.com - animation 2
 var controller = new ScrollMagic.Controller();
 
-
+// build a sceme 
 var ourScene2 = new ScrollMagic.Scene({
 triggerElement: '.kado-info',
 triggerHook: 0.9,
@@ -79,13 +75,7 @@ reverse: false
 
 })
 .setClassToggle('.kado-info', 'opacity-in') // add class to project*/
-.addIndicators({
-		name: 'fade scene',
-		colorTrigger: 'black',
-		indent: 200,
-		colorStart: '#75C695',
-		colorEnd: 'pink'
-	}) 
+
 .addTo(controller);
 
 // Scroll Magic Tutorial by www.ihatetomatoes.com - animation 3
@@ -97,13 +87,7 @@ triggerHook: 0.9,
 reverse: false
 })
 .setClassToggle('.animated-text', 'opacity-in') // add class to project*/
-.addIndicators({
-		name: 'fade scene',
-		colorTrigger: 'black',
-		indent: 200,
-		colorStart: '#75C695',
-		colorEnd: 'pink'
-	}) 
+
 .addTo(controller);
 
 
@@ -117,13 +101,7 @@ reverse: false
 
 })
 .setClassToggle('.text-sign-up', 'opacity-in') // add class to project*/
-.addIndicators({
-		name: 'fade scene',
-		colorTrigger: 'black',
-		indent: 200,
-		colorStart: '#75C695',
-		colorEnd: 'pink'
-	}) 
+
 .addTo(controller);
 
 
@@ -147,11 +125,16 @@ reverse: false
 
 		
 // Standard Dialogs
-$("#enroll").on( 'click', function () {
-	reset();
-	alertify.alert("Arigatou!\nThank you for signing up. We'll be in touch shortly.");
-	return false;
-});
+		$("#enroll").on( 'click', function () {
+			reset();
+			alertify.alert("Arigatou!\nThank you for signing up. We'll be in touch shortly.");
+			return false;
+		});
+
+
+
+
+
 
 
 // Mobile/Tablet Nav
@@ -202,15 +185,20 @@ $(".next-fadeout").click(function () {
 		},
 		500
 	);
+
+	
+
+	
+
 });
 
 
-// Custom video controls - Tutorial by Adam Khoury - https://www.youtube.com/channel/UCpzRDg0orQBZFBPzeXm1yNg
+
 
 var vid, playbtn, seekslider, curtimetext, durtimetext, mutebtn, volumeslider, fullscreenbtn;
 
 
-    function intializePlayer(){
+function intializePlayer(){
 
 	// set object referneces
 	vid = document.getElementById('my-video');
@@ -230,92 +218,158 @@ var vid, playbtn, seekslider, curtimetext, durtimetext, mutebtn, volumeslider, f
 	volumeslider.addEventListener('change', setvolume, false);
 	fullscreenbtn.addEventListener('click', toggleFullScreen, false);
 
-    }
+}
 
-    window.onload = intializePlayer;
+window.onload = intializePlayer;
 
 
-    function playPause(){
-	   if(vid.paused){
+function playPause(){
+	if(vid.paused){
 		vid.play();
 		playbtn.innerHTML = 'Pause';
 
-	}   else {
+	}else {
 		vid.pause();
 		playbtn.style = 'fas fa-play';
 
-	   }
+	}
 	
-    }
+}
 
 
-    function vidSeek() {
-	   var seekto = vid.duration * (seekslider.value / 100);
-	   vid.currentTime = seekto;
+function vidSeek() {
+	var seekto = vid.duration * (seekslider.value / 100);
+	vid.currentTime = seekto;
 
-    }
+}
 
-    function seektimeupdate(){
-	   var nt = vid.currentTime * (100 / vid.duration);
-	       seekslider.value = nt;
-	   var curmins = Math.floor(vid.currentTime / 60);
-	   var cursecs = Math.floor(vid.currentTime - curmins * 60);
-	   var durmins = Math.floor(vid.duration / 60);
-	   var dursecs = Math.round(vid.duration - durmins * 60);
-	       if(cursecs < 10) {
-		      cursecs = '0'+cursecs;
-	       }
-	       if(dursecs < 10){
-		      dursec = '0'+dursecs;
-	       }
-	       if(curmins < 10) {
-		      curmins = '0'+curmins;
-	       }
-	       if(durmins < 10){
-		      durmins = '0'+durmins;
-	       }
+function seektimeupdate(){
+	var nt = vid.currentTime * (100 / vid.duration);
+	seekslider.value = nt;
+	var curmins = Math.floor(vid.currentTime / 60);
+	var cursecs = Math.floor(vid.currentTime - curmins * 60);
+	var durmins = Math.floor(vid.duration / 60);
+	var dursecs = Math.round(vid.duration - durmins * 60);
+	if(cursecs < 10) {
+		cursecs = '0'+cursecs;
+	}
+	if(dursecs < 10){
+		dursec = '0'+dursecs;
+	}
+	if(curmins < 10) {
+		curmins = '0'+curmins;
+	}
+	if(durmins < 10){
+		durmins = '0'+durmins;
+	}
 
 	curtimetext.innerHTML = curmins+':'+cursecs;
 	durtimetext.innerHTML = durmins+':'+dursecs;
 
-    }
 
-    function vidmute(){
 
-	   if(vid.muted){
+}
+
+function vidmute(){
+
+	if(vid.muted){
 		vid.muted = false;
 		mutebtn.innerHTML = 'Mute';
 
-	}     else {
-		  vid.muted = true;
-	       mutebtn.innerHTML = 'Unmuted';
+	}else {
+		vid.muted = true;
+	mutebtn.innerHTML = 'Unmuted';
 
-	   }
+	}
 	
-    }
+}
 
 
-    function setvolume() {
+function setvolume() {
 	vid.volume = volumeslider.value / 100;
-    
-    }
 
-    function toggleFullScreen(){
-	   
-       if(vid.requestFullScreen){
+
+
+}
+
+function toggleFullScreen(){
+	if(vid.requestFullScreen){
 		vid.requestFullScreen();
-	}  else if (vid.webkitRequestFullScreen){
+	}else if (vid.webkitRequestFullScreen){
 		vid.webkitRequestFullScreen();
-	}  else if (vid.mozRequestFullScreen){
+	}else if (vid.mozRequestFullScreen){
 		vid.mozkitRequestFullScreen();
 		
 
-	   }
+	}
 	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* // code based on example supplied by W3 Schools
+
+// Get the video
+var video = document.getElementById("myVideo");
+
+// Get the button
+var btn = document.getElementById("myBtn");
+
+// Pause and play the video, and change the button text
+function myFunction() {
+    if (video.paused) {
+        video.play();
+        btn.innerHTML = "Pause";
+    } else {
+        video.pause();
+        btn.innerHTML = "Play";
     }
-
-
-
+}*/
 
 
 
